@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tính điểm Tốt nghiệp THPT 2019</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=2319149868372705&autoLogAppEvents=1"></script>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/graduation.png" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						Tính điểm Tốt nghiệp
+					</span>
+					<p style="margin-bottom: 2em;">Tính tổng điểm 4 bài thi cần đạt để đậu Tốt nghiệp.</p>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="diem-tongket" placeholder="Điểm tổng kết 12">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-bolt" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="diem-khuyenkhich" placeholder="Điểm khuyến khích">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-bolt" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="diem-uutien" placeholder="Điểm ưu tiên">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-bolt" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="calc">
+							Tính điểm
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<a class="txt2" href="kk_ut.html">
+							Điểm khuyến khích
+						</a>
+						<span class="txt1">
+							/
+						</span>
+						<a class="txt2" href="kk_ut.html">
+							Điểm ưu tiên
+						</a>
+					</div>
+
+					<div class="text-center p-t-12">
+						<div class="fb-like" data-href="https://eof.vn/totnghiep/" data-width="240" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="https://monokai.dev/">
+							@MonokaiJs © NorthStudio 2019
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<script >
+		/*
+		** Author: 	@MonokaiJsp (MonokaiJs | NorthStudio)
+		** Home:	https://monokai.dev
+		*/
+		(() => {
+			$('.js-tilt').tilt({
+				scale: 1.1
+			});
+			$('#calc').on('click', e => {
+				var diem_tk = $('#diem-tongket').val().replace(',', '.');
+				var diem_kk = $('#diem-khuyenkhich').val().replace(',', '.');
+				var diem_ut = $('#diem-uutien').val().replace(',', '.');
+				if (diem_kk == '' || diem_tk == '' || diem_ut == '') {
+					Swal.fire({
+						title: 'Hmm...',
+						text: 'Vui lòng điền đầy đủ các ô nha! Cái nào không có thì nhập 0 vào.',
+						type: 'error',
+						confirmButtonText: 'Thử lại'
+					});
+				} else {
+					var diem_can_dat = ((5 - diem_ut) * 10 - diem_tk * 3) / 7 * 4 - diem_kk;
+					Swal.fire({
+						title: 'Đây rồi!',
+						html: "Bạn cần đạt tổng điểm 4 bài thi Toán + Văn + Anh + Trung bình tổ hợp môn là <b>" + Math.round(diem_can_dat * 10) / 10 + "</b> điểm.<br/>Tức mỗi môn cần đạt trên 1 điểm và trung bình mỗi môn >= " + Math.round(diem_can_dat /4 * 10) / 10 + " để đậu tốt nghiệp.",
+						type: 'info',
+						confirmButtonText: 'Thử lại'
+					});
+				}
+				
+				return false;
+			});
+		})();
+	</script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>
